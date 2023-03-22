@@ -47,7 +47,7 @@ app.post('/send', upload.single('file'), (req, res) => {
         Я здійснював замовлення за номером телефону 
         <strong>${tel}</strong> на адресу <strong>${address}</strong>. 
         Хочу поділитися своїми враженнями про Вас: <strong>${text}</strong>.
-        Я задоволена(й) на <strong>${raiting !== null ? raiting : 0}/5</strong>.
+        Я задоволена(й) на <strong>${raiting === null ? 0 : raiting}/5</strong>.
         ${file ? 'Також прикріплюю фото нижче.' : ''}
       </p>
 
