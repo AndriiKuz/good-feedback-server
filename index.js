@@ -6,6 +6,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const app = express();
+const port = process.env.PORT || 3001;
+
 app.use(cors());
 dotenv.config();
 
@@ -43,7 +45,7 @@ app.post('/send', upload.single('file'), (req, res) => {
 
       <h1 style='color:#f15b22; text-align:center; font-size:36px;'>Good sushi & pizza feedback</h1>
       <p style='font-size:16px;'>
-          Привіт, мене звати <strong>${name}</strong>, я дізнався про вас від <strong>${ad}</strong>. 
+          Привіт, мене звати <strong>${name}</strong>, я дізнався про вас <strong>${ad}</strong>. 
         Я здійснював замовлення за номером телефону <strong>${tel}</strong>. 
           Хочу поділитися своїми враженнями про Вас: 
         <strong>${text}</strong>.
@@ -76,7 +78,5 @@ app.post('/send', upload.single('file'), (req, res) => {
     }
   });
 });
-
-const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
