@@ -16,7 +16,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 app.post('/send', upload.single('file'), (req, res) => {
-  const { name, tel, address, ad, text, raiting } = req.body;
+  const { name, tel, ad, text, raiting } = req.body;
   const file = req.file;
 
   const transporter = nodemailer.createTransport({
@@ -43,11 +43,13 @@ app.post('/send', upload.single('file'), (req, res) => {
 
       <h1 style='color:#f15b22; text-align:center; font-size:36px;'>Good sushi & pizza feedback</h1>
       <p style='font-size:16px;'>
-        Привіт, мене звати <strong>${name}</strong>, я дізнався про вас від <strong>${ad}</strong>. 
-        Я здійснював замовлення за номером телефону 
-        <strong>${tel}</strong> на адресу <strong>${address}</strong>. 
-        Хочу поділитися своїми враженнями про Вас: <strong>${text}</strong>.
-        Я задоволена(й) на <strong>${raiting === null ? 0 : raiting}/5</strong>.
+          Привіт, мене звати <strong>${name}</strong>, я дізнався про вас від <strong>${ad}</strong>. 
+        Я здійснював замовлення за номером телефону <strong>${tel}</strong>. 
+          Хочу поділитися своїми враженнями про Вас: 
+        <strong>${text}</strong>.
+          Я задоволена(й) на <strong>${
+            raiting === 'null' ? 0 : raiting
+          }/5</strong>.
         ${file ? 'Також прикріплюю фото нижче.' : ''}
       </p>
 
